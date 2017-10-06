@@ -3,9 +3,10 @@ package controllers;
 import api.CreateReceiptRequest;
 import api.ReceiptResponse;
 import dao.ReceiptDao;
-//import dao.TagDao;
+import dao.TagDao;
 import generated.tables.records.ReceiptsRecord;
 
+import javax.swing.text.html.HTML;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
@@ -22,7 +23,7 @@ public class ReceiptController {
     final ReceiptDao receipts;
     //final TagDao tags;
 
-    public ReceiptController(ReceiptDao receipts) {
+    public ReceiptController(ReceiptDao receipts, TagDao tags) {
         this.receipts = receipts;
         //this.tags = tags;
     }

@@ -2,9 +2,11 @@ package controllers;
 
 import api.CreateReceiptRequest;
 import api.ReceiptResponse;
+import api.TagsResponse;
 import dao.ReceiptDao;
 import dao.TagDao;
 import generated.tables.records.ReceiptsRecord;
+import generated.tables.records.TagsRecord;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -47,6 +49,13 @@ public class TagController {
         List<Integer> receiptIds = tags.getReceiptIdsWithTag(tagName);
         List<ReceiptsRecord> receiptRecords = receipts.getAllReceiptsWithReceiptId(receiptIds);
         return receiptRecords.stream().map(ReceiptResponse::new).collect(toList());
+    }
+
+    @GET
+    @Path("/tags")
+    public List<TagsResponse> getTags() {
+        List<TagsRecord> tagsRecords = tags.getAllTags();
+        return tagsRecords.stream().map(TagsResponse::new).collect(toList());
     }
 
 }
